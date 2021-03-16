@@ -1,39 +1,31 @@
 <template>
-  <div>
-    <Home-header :city="city"></Home-header>
-    <Home-swiper :list="swiperList"></Home-swiper>
-    <Home-icon :list="iconList"></Home-icon>
-    <Home-recommend :list="recommendList"></Home-recommend>
-    <Home-weekend :list="weekendList"></Home-weekend>
+  <div class="container">
+    <Home-header></Home-header>
+    <Home-list></Home-list>
+    <Home-card :cardList="cardList"></Home-card> 
   </div>
 </template>
 
 <script>
-import HomeHeader from "./components/Header"
-import HomeSwiper from "./components/Swiper"
-import HomeIcon from "./components/Icon"
-import HomeRecommend from "./components/Recommend"
-import HomeWeekend from "./components/Weekend"
+import HomeHeader from "@/components/Header"
+import HomeList from "./components/List"
+import HomeCard from "./components/Card"
 import axios from 'axios';
 export default {
   name: 'Home',
   data () {
     return {
-      city:"",
-      swiperList:[],
-      iconList:[],
-      recommendList:[],
-      weekendList:[]
+      height:"",
+      cardList:[]
     }
   },
   components:{
     HomeHeader,
-    HomeSwiper,
-    HomeIcon,
-    HomeRecommend,
-    HomeWeekend
+    HomeList,
+    HomeCard,
   },
   mounted(){
+    this.height= window.screen.height
     this.getInfo();
   },
   methods:{
@@ -47,12 +39,7 @@ export default {
       console.log(res)
       res=res.data;
       if(res.ret&&res.data){
-        this.city=res.city;
-        
-        this.swiperList=res.data.swiperList;
-        this.iconList=res.data.iconList;
-        this.recommendList=res.data.recommendList;
-        this.weekendList=res.data.weekendList
+        this.cardList=res.data.listAll
       }
     }
   }
@@ -60,6 +47,14 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
+<style lang="stylus" scoped>
+.container
+  background-color rgba(248,248,249,1)
+  .wrapper
+    margin 0 100px
+    padding 0 60px
+    .wrapper-card
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0 -8px 20px;
 </style>
