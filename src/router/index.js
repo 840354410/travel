@@ -10,7 +10,25 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children:[
+        {
+          path: '/testFirst/:id',
+          name: 'TestFirst',
+          component: resolve => require(['../pages/home/First.vue'], resolve),
+          meta: { title: 'first' },
+        },{
+          path: '/testSecond',
+          name: 'TestSecond',
+          component: resolve => require(['../pages/home/Second.vue'], resolve),
+          meta: { title: 'second' },
+        },{
+          path: '/card',
+          name: 'Card',
+          component: resolve => require(['../pages/home/components/Card.vue'], resolve),
+          meta: { title: 'card' },
+        },
+      ]
     },{
       path: '/detail',
       name: 'Detail',

@@ -1,6 +1,6 @@
 <template>
     <div class="container" ref="main">
-        <h1>类型选择</h1>
+        <h1>second</h1>
     </div>
 </template>
 <script>
@@ -22,7 +22,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .container
-    margin 80px 200px
-    height 3000px
+    margin 40px 100px
+    height calc(100vh - 141px)
     background-color red
 </style>
