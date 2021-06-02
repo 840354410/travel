@@ -5,6 +5,7 @@
       v-for="(items, indexs) of listAll"
       :key="indexs + '00'"
     >
+
       <div class="list" @mouseleave="handleonMouseout(indexs)">
         <div class="title">
           <h1>{{ items.type }}</h1>
@@ -72,7 +73,6 @@ export default {
   },
   methods: {
     handleonMouseover([indexs, index]) {
-        
         let list = this.listAll[indexs].list;
         list.forEach((item,num)=>{
             if(num==index){
@@ -80,7 +80,7 @@ export default {
             }else{
                 item.visibility = false;
             }
-        });
+        })
     },
     handleonMouseout(index) {
           let list = this.listAll[index].list;
